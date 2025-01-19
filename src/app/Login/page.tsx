@@ -1,19 +1,34 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { useLoginUser } from "@/service/Auth/Auth";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const { mutate: loginAdmin, isPending, isSuccess } = useLoginUser();
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible((prev) => !prev);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    // Handle form submission logic
+    loginAdmin({ email, password });
   };
+
+  useEffect(() => {
+    if (!isPending && isSuccess) {
+      router.push("/");
+    }
+  }, [isPending, isSuccess]);
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
@@ -25,7 +40,6 @@ const LoginForm = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Email Field */}
           <div>
             <label
               htmlFor="email"
@@ -38,11 +52,12 @@ const LoginForm = () => {
               type="email"
               placeholder="Enter your email"
               className="w-full mt-1 px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-amber-500"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
 
-          {/* Password Field */}
           <div className="relative">
             <label
               htmlFor="password"
@@ -55,6 +70,8 @@ const LoginForm = () => {
               type={passwordVisible ? "text" : "password"}
               placeholder="Enter your password"
               className="w-full mt-1 px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-amber-500"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
             <button
@@ -70,8 +87,8 @@ const LoginForm = () => {
             </button>
           </div>
 
-          {/* Submit Button */}
           <button
+            disabled={isPending}
             type="submit"
             className="w-full bg-amber-500 text-white font-medium py-2 rounded-lg hover:bg-amber-600 transition-colors"
           >

@@ -27,15 +27,15 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="max-w-7xl default:bg-[#121212] default:text-black   p-8">
+    <div data-aos="fade-down" className="max-w-7xl p-8 mb-20">
       {/* Background text */}
       <div className="relative">
-        <h1 className="text-[120px] font-bold text-gray-800/20 absolute -top-8 left-0 select-none">
+        <h1 className="text-[60px] md:text-[120px] font-bold text-gray-800/20 absolute md:-top-8 left-0 select-none">
           CONTACT
         </h1>
 
         {/* Main heading */}
-        <h2 className="text-5xl font-bold relative mb-16 pt-12">
+        <h2 className="text-4xl md:text-5xl font-bold relative mb-16 pt-12">
           GET IN <span className="text-amber-500">TOUCH</span>
         </h2>
       </div>
@@ -102,25 +102,25 @@ export default function ContactPage() {
             <input
               type="text"
               placeholder="YOUR NAME"
-              className="w-full bg-gray-900 rounded-lg px-6 py-4 outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full bg-slate-100 dark:bg-gray-900 rounded-lg px-6 py-4 outline-none focus:ring-2 focus:ring-amber-500"
             />
             <input
               type="email"
               placeholder="YOUR EMAIL"
-              className="w-full bg-gray-900 rounded-lg px-6 py-4 outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full bg-slate-100 dark:bg-gray-900 rounded-lg px-6 py-4 outline-none focus:ring-2 focus:ring-amber-500"
             />
           </div>
 
           <input
             type="text"
             placeholder="YOUR SUBJECT"
-            className="w-full bg-gray-900 rounded-lg px-6 py-4 outline-none focus:ring-2 focus:ring-amber-500"
+            className="w-full bg-slate-100 dark:bg-gray-900 rounded-lg px-6 py-4 outline-none focus:ring-2 focus:ring-amber-500"
           />
 
           <textarea
             placeholder="YOUR MESSAGE"
             rows={6}
-            className="w-full bg-gray-900 rounded-lg px-6 py-4 outline-none focus:ring-2 focus:ring-amber-500 resize-none"
+            className="w-full bg-slate-100 dark:bg-gray-900 rounded-lg px-6 py-4 outline-none focus:ring-2 focus:ring-amber-500 resize-none"
           />
 
           <button
